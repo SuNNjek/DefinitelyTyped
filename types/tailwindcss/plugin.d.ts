@@ -7,15 +7,18 @@ export interface TailwindPlugin {
 // https://tailwindcss.com/docs/plugins
 declare function plugin(
     plugin: (helpers: {
-        addUtilities: any;
-        addComponents: any;
-        addBase: any;
-        addVariant: any;
-        e: any;
-        prefix: any;
-        theme: any;
+        addUtilities: (utils: any) => void;
+        matchUtilities: (utils: any) => void;
+        addComponents: (components: any) => void;
+        matchComponents: (components: any) => void;
+        addBase: (styles: any) => void;
+        addVariant: (name: string, variant: any) => void;
+        e: (className: string) => string;
+        prefix: (selector: string) => string;
+        theme: (key: string) => any;
         variants: any;
-        config: any;
+        config: (path: string, fallback: any) => any;
+        corePlugins: (pluginName: string) => boolean;
         postcss: any;
     }) => void,
     config?: any,
